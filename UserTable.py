@@ -87,7 +87,7 @@ class UserTable(object):
             _, res = self.DBHandle.selectDb(sql)
 
             # 更新邀请码有效期
-            sql = 'update invitation_code set expire_time = "{}", status = "{}" where code = "{}"'.format(valid_time, 1, user_set[0]["invitation_code"])
+            sql = 'update invitation_code set expire_time = "{}", status = "{}" where code = "{}"'.format(valid_time, 2, user_set[0]["invitation_code"])
             self.DBHandle.updateDb(sql)
             print("邀请码有效期由{}调整至{}。".format(res[0]["expire_time"], valid_time))
         else:
