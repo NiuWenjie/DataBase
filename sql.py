@@ -1,3 +1,4 @@
+# mysql底层，增、删、查、改命令
 import pymysql
 
 class MySQLBaseHandle(object):
@@ -13,13 +14,13 @@ class MySQLBaseHandle(object):
         try:
             # self.cursor.execute(sql)
             tt = self.cursor.execute(sql)  # 返回 插入数据 条数 可以根据 返回值 判定处理结果
-            print(tt)
             self.conn.commit()
         except:
             # 发生错误时回滚
             self.conn.rollback()
         finally:
             self.cursor.close()
+            return tt if 'tt' in dir() else 0
 
     def deleteDB(self,sql):
         ''' 操作数据库数据删除 '''
@@ -72,3 +73,4 @@ class MySQLBaseHandle(object):
     def closeDb(self):
         ''' 数据库连接关闭 '''
         self.conn.close()
+        print("关闭数据库！")
